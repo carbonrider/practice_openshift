@@ -35,8 +35,9 @@ public class HelloServlet extends HttpServlet {
 	private void printEnvVar(HttpServletResponse resp, String username, String password) throws IOException {
 		PrintWriter out = resp.getWriter();
 		if ((username != null) && (password != null)) {
-			out.println("Hello " + username);
-			out.println("Your password is " + password);
+			out.println("Found environment variables from secret.");
+			out.println("Hello: " + username);
+			out.println("Your password is: " + password);
 		} else {
 			out.println("Sorry, no environment variable found.");
 		}
