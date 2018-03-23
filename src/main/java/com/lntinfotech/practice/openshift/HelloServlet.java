@@ -28,8 +28,22 @@ public class HelloServlet extends HttpServlet {
 
 		printConfigMapVar(out);
 
+		printConfigFromFile(out);
+
 		out.flush();
 		out.close();
+	}
+
+	/**
+	 * @param out
+	 */
+	private void printConfigFromFile(PrintWriter out) {
+		String gameProperty = System.getenv("game_property");
+		if (gameProperty != null) {
+			out.println("Game Property : " + gameProperty);
+		} else {
+			out.println("Sorry, config map from property cannot be read.");
+		}
 	}
 
 	/**
