@@ -21,9 +21,30 @@ public class HelloServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String username = System.getenv("username");
-		String password = System.getenv("password");
-		printEnvVar(resp, username, password);
+
+		PrintWriter out = resp.getWriter();
+
+		printEnvVar(out);
+
+		printConfigMapVar(out);
+
+		out.flush();
+		out.close();
+	}
+
+	/**
+	 * @param out
+	 */
+	private void printConfigMapVar(PrintWriter out) {
+		String propertyOne = System.getenv("example.property.1");
+		String propertyTwo = System.getenv("example.property.2");
+
+		if ((propertyOne != null) && (propertyTwo != null)) {
+			out.println("Property 1: " + propertyOne);
+			out.println("Property 2: " + propertyTwo);
+		} else {
+			out.println("Sorry, no config map found.");
+		}
 	}
 
 	/**
@@ -32,17 +53,15 @@ public class HelloServlet extends HttpServlet {
 	 * @param password
 	 * @throws IOException
 	 */
-	private void printEnvVar(HttpServletResponse resp, String username, String password) throws IOException {
-		PrintWriter out = resp.getWriter();
+	private void printEnvVar(PrintWriter out) throws IOException {
+		String username = System.getenv("username");
+		String password = System.getenv("password");
 		if ((username != null) && (password != null)) {
-			out.println("Found environment variables from secret.");
-			out.println("Hello: " + username);
-			out.println("Your password is: " + password);
+			out.println("Hello " + username);
+			out.println("Your password is " + password);
 		} else {
-			out.println("Sorry, no environment variable found.");
+			out.println("Sorry, no secret found.");
 		}
-		out.flush();
-		out.close();
 	}
 
 }
