@@ -36,8 +36,8 @@ public class HelloServlet extends HttpServlet {
 	 * @param out
 	 */
 	private void printConfigMapVar(PrintWriter out) {
-		String propertyOne = System.getenv("example.property.1");
-		String propertyTwo = System.getenv("example.property.2");
+		String propertyOne = System.getenv("example_property_1");
+		String propertyTwo = System.getenv("example_property_2");
 
 		if ((propertyOne != null) && (propertyTwo != null)) {
 			out.println("Property 1: " + propertyOne);
