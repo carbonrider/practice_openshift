@@ -53,7 +53,7 @@ public class HelloServlet extends HttpServlet {
 			out.println("<pre>");
 			out.println("Database list");
 			while (rs.next()) {
-				out.println(rs.getString(0));
+				out.println(rs.getString(1));
 			}
 			out.println("</pre>");
 			rs.close();
