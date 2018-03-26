@@ -47,13 +47,13 @@ public class HelloServlet extends HttpServlet {
 		Connection con = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://mysql:3306/", "os_mysql", "os_mysql");
+			con = DriverManager.getConnection("jdbc:mysql://mysql:3306/sampledb", "os_mysql", "os_mysql");
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("show databases");
+			ResultSet rs = stmt.executeQuery("select * from books");
 			out.println("<pre>");
-			out.println("Database list");
+			out.println("Books list");
 			while (rs.next()) {
-				out.println(rs.getString(1));
+				out.println(rs.getString("book_title") + "::" + rs.getString("author"));
 			}
 			out.println("</pre>");
 			rs.close();
