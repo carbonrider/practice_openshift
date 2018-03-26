@@ -47,7 +47,7 @@ public class HelloServlet extends HttpServlet {
 		Connection con = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("mysql://mysql:3306/", "os_mysql", "os_mysql");
+			con = DriverManager.getConnection("jdbc:mysql://mysql:3306/", "os_mysql", "os_mysql");
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("show databases");
 			out.println("<pre>");
