@@ -7,9 +7,19 @@
 		<servlet-class>com.lntinfotech.practice.openshift.HelloServlet</servlet-class>
 	</servlet>
 
+	<servlet>
+		<servlet-name>DatabaseServlet</servlet-name>
+		<servlet-class>com.lntinfotech.practice.openshift.DatabaseServlet</servlet-class>
+	</servlet>
+	
 	<servlet-mapping>
 		<servlet-name>HelloServlet</servlet-name>
 		<url-pattern>/welcome</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>DatabaseServlet</servlet-name>
+		<url-pattern>/database</url-pattern>
 	</servlet-mapping>
 
 	<welcome-file-list>

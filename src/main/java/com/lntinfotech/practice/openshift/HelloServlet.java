@@ -31,8 +31,6 @@ public class HelloServlet extends HttpServlet {
 
 		resp.setContentType("text/html");
 
-		printDatabaseInformation(out);
-
 		printEnvVar(out);
 
 		printConfigMapVar(out);
@@ -41,33 +39,6 @@ public class HelloServlet extends HttpServlet {
 
 		out.flush();
 		out.close();
-	}
-
-	private void printDatabaseInformation(PrintWriter out) {
-		Connection con = null;
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://mysql:3306/sampledb", "os_mysql", "os_mysql");
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from books");
-			out.println("<pre>");
-			out.println("Books list");
-			while (rs.next()) {
-				out.println(rs.getString("book_title") + "::" + rs.getString("author"));
-			}
-			out.println("</pre>");
-			rs.close();
-		} catch (Exception e) {
-			out.println("Error while connecting databse: " + e.getMessage());
-		} finally {
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					out.println("Error while closing connection." + e.getMessage());
-				}
-			}
-		}
 	}
 
 	/**
